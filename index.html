@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffe6e6; 
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            touch-action: manipulation; 
+        }
+
+        /* Mobile Notebook Container */
+        .notebook {
+            position: relative;
+            width: 90vw; 
+            max-width: 380px; 
+            height: 80vh; 
+            max-height: 650px; 
+            perspective: 1500px; 
+        }
+
+        /* Individual Single Pages */
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            border-radius: 5px 5px 15px 15px;
+            padding: 40px 15px 15px 15px; /* Extra padding at the top for the spiral */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fbdcd6;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+            transform-origin: top center; 
+            
+            /* The flipping animation timing */
+            transition: transform 0.6s ease-in-out, opacity 0.3s ease-in-out 0.3s;
+        }
+
+        /* The class added via JS to trigger the upward flip */
+        .page.flipping {
+            transform: rotateX(150deg); /* Flips upward and slightly back */
+            opacity: 0; /* Fades out halfway through the flip */
+        }
+
+        /* Spiral Binding Holes Design */
+        .spiral-holes {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: repeating-radial-gradient(circle, #ccc 0, #ccc 6px, transparent 7px, transparent 25px);
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        /* Cover Styling */
+        .cover {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #fff;
+            border: none;
+        }
+        
+        .cover .spiral-holes {
+            background: repeating-radial-gradient(circle, #fff 0, #fff 6px, transparent 7px, transparent 25px);
+            opacity: 0.5;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem; 
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: #d6336c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cover h1 { color: #fff; }
+
+        p {
+            text-align: center;
+            color: #555;
+            font-size: 0.95rem;
+            margin: 5px 0;
+            padding: 0 10px;
+        }
+
+        /* Responsive Image Layout */
+        .photo-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+            width: 100%;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .photo {
+            width: 85%;
+            height: 22vh; 
+            max-height: 150px; 
+            object-fit: cover;
+            border-radius: 10px;
+            border: 4px solid #fff;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            transform: rotate(-2deg);
+        }
+        
+        .photo:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .single-photo {
+            height: 40vh;
+            max-height: 280px;
+        }
+
+        /* Decorative Elements */
+        .decor {
+            font-size: 1.5rem;
+            margin: 5px 0;
+            text-align: center;
+        }
+        
+        .decor-absolute {
+            position: absolute;
+            font-size: 1.8rem;
+            opacity: 0.8;
+        }
+
+        .flower1 { bottom: 15px; right: 15px; }
+        .balloon1 { top: 40px; left: 15px; }
+
+        /* A small hint element on the cover */
+        .tap-hint {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="notebook" id="notebook">
+        
+        <div class="page cover">
+            <div class="spiral-holes"></div>
+            <h1>Happy Birthday<br>Name!</h1>
+            <div class="decor">🎂 🎈 🥳</div>
+            <p class="tap-hint">(Tap anywhere to flip)</p>
+        </div>
+
+        <div class="page">
+            <div class="spiral-holes"></div>
+            <h1>For You 🎀</h1>
+            <div class="photo-grid">
+                <img src="images/pic1.jpg" alt="Photo 1" class="photo single-photo"> 
+            </div>
+            <p>Wishing you the happiest of birthdays!</p>
+            <div class="decor">✨ 💖 ✨</div>
+        </div>
+
+        <div class="page">
+            <div class="spiral-holes"></div>
+            <div class="decor-absolute balloon1">🎈</div>
+            <h1>Good Times</h1>
+            <div class="photo-grid">
+                <img src="images/pic2.jpg" alt="Photo 2" class="photo">
+                <img src="images/pic3.jpg" alt="Photo 3" class="photo">
+            </div>
+            <div class="decor-absolute flower1">🌷</div>
+        </div>
+
+        <div class="page">
+            <div class="spiral-holes"></div>
+            <h1>Memories ✨</h1>
+            <div class="photo-grid">
+                <img src="images/pic4.jpg" alt="Photo 4" class="photo">
+                <img src="images/pic5.jpg" alt="Photo 5" class="photo">
+            </div>
+            <p>Keep smiling and shining!</p>
+            <div class="decor">🌸 🦋 🌸</div>
+        </div>
+
+        <div class="page cover">
+            <div class="spiral-holes"></div>
+            <h1>Happy Birthday!</h1>
+            <p>Hope you have an amazing day!</p>
+            <div class="decor">💖 🎉 🎁</div>
+            <p class="tap-hint">(Tap to go back to start)</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Grab all pages and turn them into an Array we can easily manipulate
+        let pages = Array.from(document.querySelectorAll('.page'));
+        let isFlipping = false;
+
+        // Function to stack the pages visually based on their order in the array
+        function updateStack() {
+            pages.forEach((page, index) => {
+                // The first item in the array gets the highest z-index
+                page.style.zIndex = pages.length - index;
+            });
+        }
+
+        // Set up the initial stack
+        updateStack();
+
+        // Listen for taps anywhere on the notebook
+        document.getElementById('notebook').addEventListener('click', function() {
+            if (isFlipping) return; 
+            isFlipping = true;
+
+            // Grab the page currently on top
+            let topPage = pages[0];
+
+            // Trigger the CSS flip animation
+            topPage.classList.add('flipping');
+
+            // Wait exactly 600ms for the animation to finish
+            setTimeout(() => {
+                // Remove the flipping animation class (resets its position behind the others)
+                topPage.classList.remove('flipping');
+
+                // Take the top page and move it to the very end of our array
+                pages.shift();
+                pages.push(topPage);
+
+                // Re-apply the z-indexes based on the new array order
+                updateStack();
+
+                // Unlock clicking
+                isFlipping = false;
+            }, 600); 
+        });
+    </script>
+</body>
+</html>
