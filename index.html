@@ -20,12 +20,21 @@
         }
 
         /* Mobile Notebook Container */
-        .notebook {
+        /*.notebook {
             position: relative;
             width: 90vw; 
             max-width: 380px; 
             height: 80vh; 
             max-height: 650px; 
+            perspective: 1500px; 
+        }*/
+
+        .notebook {
+            position: relative;
+            width: 85vw; 
+            max-width: 370px; 
+            height: 75vh; 
+            max-height: 640px; 
             perspective: 1500px; 
         }
 
@@ -155,27 +164,81 @@
             opacity: 0.8;
             margin-top: auto;
         }
+
+        .quote-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1; /* Make it take up the available vertical space */
+            padding: 0 20px;
+        }
+
+        .quote-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300; /* Lighter font weight for quotes */
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .quote-author {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            color: #d6336c;
+        }
+
+        .quote-decor {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        /* Define new absolute decorative objects */
+        .rose1 { bottom: 20px; left: 20px; } /* Lower left rose */
+        .flower2 { top: 60px; right: 20px; } /* Upper right pink flower */
+        .sparkle1 { top: 120px; left: 60px; } /* Random sparkle */
+        .heart1 { bottom: 80px; right: 60px; } /* Random heart */
     </style>
 </head>
 <body>
+
+    <audio id="bgMusic" loop>
+    <source src="song.mpeg" type="audio/mpeg">
+</audio>
 
     <div class="notebook" id="notebook">
         
         <div class="page cover">
             <div class="spiral-holes"></div>
-            <h1>Happy Birthday<br>Name!</h1>
+            <!-- <h1>Happy Birthday<br>Name!</h1> -->
+             <div class="quote-container">
+                <p class="quote-text"><h1>"Happy Birthday<br>Aditi ❤️"</h1></p>
+            </div>
             <div class="decor">🎂 🎈 🥳</div>
             <p class="tap-hint">(Tap anywhere to flip)</p>
         </div>
 
         <div class="page">
             <div class="spiral-holes"></div>
-            <h1>For You 🎀</h1>
+            <h1>Obsessed ✨</h1>
             <div class="photo-grid">
                 <img src="images/pic1.jpg" alt="Photo 1" class="photo single-photo"> 
             </div>
             <p>Wishing you the happiest of birthdays!</p>
             <div class="decor">✨ 💖 ✨</div>
+        </div>
+
+        <div class="page">
+            <div class="spiral-holes"></div>
+            <!-- <div class="decor-absolute balloon1">🎈</div> -->
+            
+            <div class="quote-container">
+                <p class="quote-text"><h1>"Happy 24th! the reason behind my smile, the heart I trust completely."</h1></p>
+            </div>
+            <div class="quote-decor">💐 🌹 💐</div>
+            
         </div>
 
         <div class="page">
@@ -186,7 +249,19 @@
                 <img src="images/pic2.jpg" alt="Photo 2" class="photo">
                 <img src="images/pic3.jpg" alt="Photo 3" class="photo">
             </div>
+            <div class="quote-decor">💖 🌸 ✨</div>
             <div class="decor-absolute flower1">🌷</div>
+        </div>
+
+         <div class="page">
+            <div class="spiral-holes"></div>
+            <!-- <div class="decor-absolute balloon1">🎈</div> -->
+            
+            <div class="quote-container">
+                <p class="quote-text"><h1>"The moments we share mean more to me than anything else."</h1></p>
+            </div>
+            <div class="quote-decor">🌸 🌷 🌸</div>
+            
         </div>
 
         <div class="page">
@@ -194,23 +269,38 @@
             <h1>Memories ✨</h1>
             <div class="photo-grid">
                 <img src="images/pic4.jpg" alt="Photo 4" class="photo">
-                <img src="images/pic5.jpg" alt="Photo 5" class="photo">
+                <img src="images/pic5.jpeg" alt="Photo 5" class="photo">
             </div>
             <p>Keep smiling and shining!</p>
             <div class="decor">🌸 🦋 🌸</div>
         </div>
 
+        <div class="page">
+            <div class="spiral-holes"></div>
+            <!-- <div class="decor-absolute balloon1">🎈</div> -->
+            
+            <div class="quote-container">
+                <p class="quote-text"><h1>"Beautiful moments with you turn into memories I will never let go of."</h1></p>
+            </div>
+            <div class="quote-decor">🎈 🎂 🎁</div>
+            
+        </div>
+
         <div class="page cover">
             <div class="spiral-holes"></div>
-            <h1>Happy Birthday!</h1>
-            <p>Hope you have an amazing day!</p>
+            <!-- <h1>Happy Birthday!</h1>
+            <p>Hope you have an amazing day!</p> -->
+            <!-- <p><h1>"To be Continued..."</h1></p> -->
+              <div class="quote-container">
+                <p><h1>"To be Continued..."</h1></p>
+            </div>
             <div class="decor">💖 🎉 🎁</div>
             <p class="tap-hint">(Tap to go back to start)</p>
         </div>
 
     </div>
 
-    <script>
+    <!-- <script>
         // Grab all pages and turn them into an Array we can easily manipulate
         let pages = Array.from(document.querySelectorAll('.page'));
         let isFlipping = false;
@@ -253,6 +343,66 @@
                 isFlipping = false;
             }, 600); 
         });
-    </script>
+    </script> -->
+
+    <script>
+    // Grab all pages and turn them into an Array we can easily manipulate
+    let pages = Array.from(document.querySelectorAll('.page'));
+    let isFlipping = false;
+    
+    // NEW: Variables for audio
+    let songStarted = false; 
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Set the volume right here! (0.2 is 20% volume)
+    bgMusic.volume = 0.1;
+
+    // Function to stack the pages visually based on their order in the array
+    function updateStack() {
+        pages.forEach((page, index) => {
+            // The first item in the array gets the highest z-index
+            page.style.zIndex = pages.length - index;
+        });
+    }
+
+    // Set up the initial stack
+    updateStack();
+
+    // Listen for taps anywhere on the notebook
+    document.getElementById('notebook').addEventListener('click', function() {
+        if (isFlipping) return; 
+        isFlipping = true;
+
+        // NEW: Play the song if it hasn't started yet
+        if (!songStarted) {
+            bgMusic.play().catch(error => {
+                console.log("Audio playback was prevented:", error);
+            });
+            songStarted = true;
+        }
+
+        // Grab the page currently on top
+        let topPage = pages[0];
+
+        // Trigger the CSS flip animation
+        topPage.classList.add('flipping');
+
+        // Wait exactly 600ms for the animation to finish
+        setTimeout(() => {
+            // Remove the flipping animation class (resets its position behind the others)
+            topPage.classList.remove('flipping');
+
+            // Take the top page and move it to the very end of our array
+            pages.shift();
+            pages.push(topPage);
+
+            // Re-apply the z-indexes based on the new array order
+            updateStack();
+
+            // Unlock clicking
+            isFlipping = false;
+        }, 600); 
+    });
+</script>
 </body>
 </html>
